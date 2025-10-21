@@ -14,7 +14,7 @@
     "dep:fix": "pnpm dlx sherif@latest --fix",
     "dev": "pnpm --recursive --parallel run dev",
     "prepare": "husky install",
-    "start": "pnpm --recursive --parallel run start",
+    "start": "cd apps/api && pnpm run start",
     "test": "pnpm --recursive --parallel run test",
     "test:fast": "pnpm --recursive --parallel run test --reporter=basic --run",
     "test:changed": "pnpm --recursive --parallel run test --changed --run",
