@@ -21,6 +21,6 @@
     }
   },
   "extends": "@hey/config/base.tsconfig.json",
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts", "src/prisma/migrations/**/*"]
 }

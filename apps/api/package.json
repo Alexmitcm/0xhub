@@ -4,7 +4,7 @@
   "private": true,
   "license": "AGPL-3.0",
   "scripts": {
-    "build": "prisma generate --schema ./src/prisma/schema.prisma && tsc --build",
+    "build": "prisma generate --schema ./src/prisma/schema.prisma && node --max-old-space-size=4096 ./node_modules/.bin/tsc --build",
     "codegen": "prisma generate --schema ./src/prisma/schema.prisma",
     "dev": "tsx watch src/index.ts",
     "postinstall": "pnpm codegen",
