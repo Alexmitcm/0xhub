@@ -6,6 +6,7 @@
     "declarationMap": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "incremental": true,
     "lib": ["ES2020"],
     "module": "CommonJS",
     "moduleResolution": "node",
@@ -19,7 +20,6 @@
     "sourceMap": false,
     "strict": false,
     "target": "ES2020",
-    "incremental": true,
     "tsBuildInfoFile": ".tsbuildinfo"
   },
   "exclude": [
