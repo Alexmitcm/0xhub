@@ -7,7 +7,6 @@ services:
       cd apps/api
       pnpm install --no-frozen-lockfile
       pnpm run codegen
-      NODE_OPTIONS="--max-old-space-size=4096" pnpm run build
     startCommand: |
       cd apps/api
       PORT=10000 pnpm run start
