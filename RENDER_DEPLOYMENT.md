@@ -20,22 +20,28 @@ This guide will help you deploy your Hey API to Render.com.
 ### 2. Configure the Service
 
 **Basic Settings:**
+
 - **Name**: `hey-api`
 - **Environment**: `Node`
 - **Region**: Choose closest to your users
 - **Branch**: `master`
 
 **Build & Deploy:**
-- **Build Command**: 
+
+- **Build Command**:
+
   ```bash
   cd apps/api && pnpm install --frozen-lockfile && pnpm run build
   ```
-- **Start Command**: 
+
+- **Start Command**:
+
   ```bash
   cd apps/api && pnpm run start:prod
   ```
 
 **Advanced Settings:**
+
 - **Health Check Path**: `/ping`
 - **Auto-Deploy**: `Yes` (recommended)
 
@@ -43,7 +49,8 @@ This guide will help you deploy your Hey API to Render.com.
 
 In the Render dashboard, go to your service → Environment tab and add:
 
-#### Required Environment Variables:
+#### Required Environment Variables
+
 ```
 NODE_ENV=production
 PORT=10000
@@ -66,7 +73,8 @@ PGPASSWORD=<your_postgres_password>
 REDIS_URL=<your_redis_connection_string>
 ```
 
-#### Optional Environment Variables:
+#### Optional Environment Variables
+
 ```
 NEXT_PUBLIC_LENS_NETWORK=testnet
 LENS_API_URL=https://api-mumbai.lens.dev
@@ -75,14 +83,16 @@ DEFAULT_LENS_HANDLE=nftgamer.lens
 
 ### 4. Create Database Services
 
-#### PostgreSQL Database:
+#### PostgreSQL Database
+
 1. Go to Render Dashboard → "New +" → "PostgreSQL"
 2. Name: `hey-database`
 3. Database: `hey_main`
 4. User: `hey_user`
 5. Plan: `Starter` (or higher for production)
 
-#### Redis Database:
+#### Redis Database
+
 1. Go to Render Dashboard → "New +" → "Redis"
 2. Name: `hey-redis`
 3. Plan: `Starter` (or higher for production)
@@ -90,6 +100,7 @@ DEFAULT_LENS_HANDLE=nftgamer.lens
 ### 5. Update Environment Variables with Database URLs
 
 After creating the databases, update your service environment variables:
+
 - `DATABASE_URL`: Use the connection string from PostgreSQL service
 - `LENS_DATABASE_URL`: Same as DATABASE_URL
 - `DIRECT_URL`: Same as DATABASE_URL
@@ -113,6 +124,7 @@ If you prefer infrastructure as code, you can use the included `render.yaml` fil
 ## Health Checks
 
 Your API includes several health check endpoints:
+
 - `/ping` - Basic ping endpoint
 - `/health` - Health check with database connectivity
 - `/health/ready` - Readiness check
@@ -126,7 +138,7 @@ Your API includes several health check endpoints:
 
 ## Troubleshooting
 
-### Common Issues:
+### Common Issues
 
 1. **Build Failures**:
    - Check that all dependencies are properly installed
@@ -158,6 +170,6 @@ Your API includes several health check endpoints:
 
 ## Support
 
-- Render Documentation: https://render.com/docs
-- Render Support: https://render.com/support
+- Render Documentation: <https://render.com/docs>
+- Render Support: <https://render.com/support>
 - Your API Documentation: `https://your-app.onrender.com/docs`
