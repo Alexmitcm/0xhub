@@ -130,15 +130,15 @@ app.use("/uploads/*", serveStatic({ root: "." }));
 // Root endpoint
 app.get("/", (c) => {
   return c.json({
-    status: "success",
-    message: "Hey API is running!",
-    version: "1.0.0",
-    timestamp: new Date().toISOString(),
     endpoints: {
-      health: "/ping",
       docs: "/docs",
-      games: "/games"
-    }
+      games: "/games",
+      health: "/ping"
+    },
+    message: "Hey API is running!",
+    status: "success",
+    timestamp: new Date().toISOString(),
+    version: "1.0.0"
   });
 });
 
