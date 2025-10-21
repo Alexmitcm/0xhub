@@ -127,6 +127,21 @@ app.use(async (c, next) => {
 // Static file serving for uploads (serve from apps/api working dir)
 app.use("/uploads/*", serveStatic({ root: "." }));
 
+// Root endpoint
+app.get("/", (c) => {
+  return c.json({
+    status: "success",
+    message: "Hey API is running!",
+    version: "1.0.0",
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      health: "/ping",
+      docs: "/docs",
+      games: "/games"
+    }
+  });
+});
+
 // Health and monitoring routes
 app.get("/ping", ping);
 app.get("/health", healthCheck);
