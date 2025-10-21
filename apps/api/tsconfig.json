@@ -25,7 +25,10 @@
     "dist",
     "**/*.test.ts",
     "**/*.spec.ts",
-    "src/prisma/migrations/**/*"
+    "src/prisma/migrations/**/*",
+    "src/**/*.d.ts",
+    "**/*.js",
+    "**/*.js.map"
   ],
   "extends": "@hey/config/base.tsconfig.json",
   "include": ["src/**/*.ts"]
