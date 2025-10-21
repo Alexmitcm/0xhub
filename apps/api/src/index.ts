@@ -216,7 +216,8 @@ app.onError((err: Error, c) => errorHandler(err, c as any));
 app.notFound((c) => notFoundHandler(c as any));
 
 const port = Number.parseInt(process.env.PORT || "10000", 10);
-const hostname = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
+const hostname =
+  process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
 
 // Start server with WebSocket support
 serve({ fetch: app.fetch, hostname, port }, (info) => {
@@ -224,21 +225,21 @@ serve({ fetch: app.fetch, hostname, port }, (info) => {
   logger.info(`Environment: ${process.env.NODE_ENV || "development"}`);
   logger.info("WebSocket service initialized");
   logger.info("Admin service initialized");
-  
+
   // Log database connection status
   if (process.env.DATABASE_URL) {
     logger.info("Database connection configured");
   } else {
     logger.warn("DATABASE_URL not configured");
   }
-  
+
   // Log Redis connection status
   if (process.env.REDIS_URL) {
     logger.info("Redis connection configured");
   } else {
     logger.warn("REDIS_URL not configured");
   }
-  
+
   // Start blockchain listener (non-fatal if misconfigured)
   // Temporarily disabled for development
   // try {
