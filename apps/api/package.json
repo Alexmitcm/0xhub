@@ -4,7 +4,7 @@
   "private": true,
   "license": "AGPL-3.0",
   "scripts": {
-    "build": "prisma generate --schema ./src/prisma/schema.prisma",
+    "build": "prisma generate --schema ./src/prisma/schema.prisma && tsc",
     "codegen": "prisma generate --schema ./src/prisma/schema.prisma",
     "dev": "tsx watch src/index.ts",
     "postinstall": "pnpm codegen",
@@ -12,11 +12,14 @@
     "prisma:format": "prisma format --schema ./src/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema ./src/prisma/schema.prisma",
     "prisma:migrate:deploy": "prisma migrate deploy --schema ./src/prisma/schema.prisma",
-    "start": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "start:dev": "tsx src/index.ts",
+    "start:prod": "NODE_ENV=production node dist/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc --pretty"
+    "typecheck": "tsc --pretty",
+    "deploy:render": "pnpm build && pnpm prisma:migrate:deploy && pnpm start:prod"
   },
   "dependencies": {
     "-": "^0.0.1",

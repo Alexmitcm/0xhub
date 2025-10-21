@@ -1,0 +1,77 @@
+services:
+  - type: web
+    name: hey-api
+    env: node
+    plan: starter
+    buildCommand: |
+      cd apps/api
+      pnpm install --frozen-lockfile
+      pnpm run build
+    startCommand: |
+      cd apps/api
+      pnpm run start
+    healthCheckPath: /ping
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hey-database
+          property: connectionString
+      - key: LENS_DATABASE_URL
+        fromDatabase:
+          name: hey-database
+          property: connectionString
+      - key: DIRECT_URL
+        fromDatabase:
+          name: hey-database
+          property: connectionString
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: NEXT_PUBLIC_LENS_NETWORK
+        value: testnet
+      - key: PRIVATE_KEY
+        sync: false
+      - key: SHARED_SECRET
+        sync: false
+      - key: REFERRAL_CONTRACT_ADDRESS
+        sync: false
+      - key: BALANCED_GAME_VAULT_ADDRESS
+        sync: false
+      - key: UNBALANCED_GAME_VAULT_ADDRESS
+        sync: false
+      - key: VIP_VAULT_ADDRESS
+        sync: false
+      - key: DEFAULT_LENS_HANDLE
+        value: nftgamer.lens
+      - key: USDT_CONTRACT_ADDRESS
+        sync: false
+      - key: INFURA_URL
+        sync: false
+      - key: INFURA_WS_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: LENS_API_URL
+        value: https://api-mumbai.lens.dev
+      - key: PGPASSWORD
+        sync: false
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: hey-redis
+          property: connectionString
+
+databases:
+  - name: hey-database
+    plan: starter
+    databaseName: hey_main
+    user: hey_user
+
+  - name: hey-redis
+    plan: starter
+    type: redis
