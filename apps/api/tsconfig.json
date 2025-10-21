@@ -2,8 +2,8 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
+    "declarationMap": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2020"],
@@ -16,9 +16,11 @@
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "ES2020"
+    "sourceMap": false,
+    "strict": false,
+    "target": "ES2020",
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
   "exclude": [
     "node_modules",
