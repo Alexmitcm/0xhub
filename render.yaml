@@ -5,7 +5,7 @@ services:
     plan: starter
     buildCommand: |
       cd apps/api
-      pnpm install --frozen-lockfile
+      pnpm install --no-frozen-lockfile
       pnpm run codegen
       pnpm run build
     startCommand: |
@@ -66,6 +66,8 @@ services:
           type: redis
           name: hey-redis
           property: connectionString
+      - key: RENDER_API_KEY
+        value: rnd_qMbe8eOiuPBm19ubPZQI7ns8GimX
 
 databases:
   - name: hey-database
