@@ -1,26 +1,32 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "module": "CommonJS",
-    "noEmit": false,
-    "outDir": "dist",
-    "target": "ES2020",
-    "lib": ["ES2020"],
-    "moduleResolution": "node",
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
+    "baseUrl": ".",
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2020"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "outDir": "dist",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2020"
   },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "src/prisma/migrations/**/*"
+  ],
   "extends": "@hey/config/base.tsconfig.json",
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts", "src/prisma/migrations/**/*"]
+  "include": ["src/**/*.ts"]
 }
