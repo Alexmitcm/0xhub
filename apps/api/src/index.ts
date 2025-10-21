@@ -235,33 +235,50 @@ const hostname =
   process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
 
 // Start server with WebSocket support
-serve({ fetch: app.fetch, hostname, port }, (info) => {
-  logger.info(`Server running on ${hostname}:${info.port}`);
-  logger.info(`Environment: ${process.env.NODE_ENV || "development"}`);
-  logger.info("WebSocket service initialized");
-  logger.info("Admin service initialized");
+try {
+  serve({ fetch: app.fetch, hostname, port }, (info) => {
+    logger.info(`Server running on ${hostname}:${info.port}`);
+    logger.info(`Environment: ${process.env.NODE_ENV || "development"}`);
+    logger.info("WebSocket service initialized");
+    logger.info("Admin service initialized");
 
-  // Log database connection status
-  if (process.env.DATABASE_URL) {
-    logger.info("Database connection configured");
-  } else {
-    logger.warn("DATABASE_URL not configured");
-  }
+    // Log database connection status
+    if (process.env.DATABASE_URL) {
+      logger.info("Database connection configured");
+    } else {
+      logger.warn("DATABASE_URL not configured");
+    }
 
-  // Log Redis connection status
-  if (process.env.REDIS_URL) {
-    logger.info("Redis connection configured");
-  } else {
-    logger.warn("REDIS_URL not configured");
-  }
+    // Log Redis connection status
+    if (process.env.REDIS_URL) {
+      logger.info("Redis connection configured");
+    } else {
+      logger.warn("REDIS_URL not configured");
+    }
 
-  // Start blockchain listener (non-fatal if misconfigured)
-  // Temporarily disabled for development
-  // try {
-  //   BlockchainListenerService.start();
-  // } catch (error) {
-  //   logger.warn("Failed to start BlockchainListenerService:", error);
-  // }
+    // Start blockchain listener (non-fatal if misconfigured)
+    // Temporarily disabled for development
+    // try {
+    //   BlockchainListenerService.start();
+    // } catch (error) {
+    //   logger.warn("Failed to start BlockchainListenerService:", error);
+    // }
+  });
+} catch (error) {
+  logger.error("Failed to start server:", error);
+  process.exit(1);
+}
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught Exception:', error);
+  process.exit(1);
+});
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
 });
 
 // Handle server shutdown gracefully
