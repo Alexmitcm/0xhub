@@ -33,5 +33,11 @@
     "**/*.js.map"
   ],
   "extends": "@hey/config/base.tsconfig.json",
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/index.ts",
+    "src/routes/**/*.ts",
+    "src/services/**/*.ts",
+    "src/utils/**/*.ts",
+    "src/types/**/*.ts"
+  ]
 }
