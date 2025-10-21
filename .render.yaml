@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: hey-api
+    env: node
+    plan: starter
+    buildCommand: |
+      cd apps/api
+      pnpm install --no-frozen-lockfile
+      pnpm run codegen
+      pnpm run build
+    startCommand: |
+      cd apps/api
+      PORT=10000 pnpm run start
+    healthCheckPath: /ping
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000

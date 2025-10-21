@@ -6,7 +6,7 @@
   "scripts": {
     "biome:check": "biome check apps packages script",
     "biome:fix": "biome check --write apps packages script",
-    "build": "pnpm --recursive --parallel run build",
+    "build": "cd apps/api && pnpm install --no-frozen-lockfile && pnpm run codegen && pnpm run build",
     "build:web": "pnpm -F @hey/web build",
     "typecheck:web": "pnpm -F @hey/web typecheck",
     "codegen": "pnpm --recursive --parallel run codegen",
